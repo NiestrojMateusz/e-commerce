@@ -37,7 +37,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 }
 
-
+console.log(process.env.REACT_APP_APP_ID)
+console.log(process.env.NODE_ENV)
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
