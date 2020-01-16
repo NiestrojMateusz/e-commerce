@@ -13,7 +13,6 @@ import { setCurrentUser } from './redux/user/user.actions'
 import { selectCurrentUser } from './redux/user/user.selector'
 import CheckoutPage from './pages/checkout/checkout.component';
 
-
 class App extends Component {
   unsubscribeFromAuth = null
 
@@ -29,9 +28,9 @@ class App extends Component {
             ...snapshot.data()
           })
         });
-      } else {
-        setCurrentUser(userAuth)
       }
+
+      setCurrentUser(userAuth)
     })
   }
 
@@ -59,6 +58,6 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(App);
