@@ -5,8 +5,8 @@ import FormInput from '../form-input/form-input.component';
 import './sign-in.styles.scss';
 
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
-const SignIn = (props) => {
-  const [user, setUser] = useState({
+const SignIn = ({emailSignInStart, googleSignInStart }) => {
+  const [userCredential, setUserCredetn] = useState({
     email: '',
     password: ''
   })
@@ -14,22 +14,19 @@ const SignIn = (props) => {
   const handleSubmit = async event => {
     event.preventDefault();
 
-    const { email, password } = user;
-    const { emailSignInStart } = props;
+    const { email, password } = userCredential;
 
     emailSignInStart(email, password)
   };
 
   const handleChange = event => {
     const { value, name } = event.target;
-    setUser({
-      ...user,
+    setUserCredetn({
+      ...userCredential,
       [name]: value
     })
-    console.log(user)
   };
 
-  const { googleSignInStart } = props;
   return (
     <div className="sign-in">
       <h2>I already have an account</h2>
@@ -41,7 +38,7 @@ const SignIn = (props) => {
           required
           label="email"
           handleChange={handleChange}
-          value={user.email}
+          value={userCredential.email}
         />
         <FormInput
           name="password"
@@ -49,7 +46,7 @@ const SignIn = (props) => {
           label="password"
           required
           handleChange={handleChange}
-          value={user.password}
+          value={userCredential.password}
         />
         <div className="buttons">
           <CustomButton type='submit'> Sign in </CustomButton>
